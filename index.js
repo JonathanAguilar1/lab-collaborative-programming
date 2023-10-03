@@ -52,12 +52,17 @@ let words = scrolledWords.shift()
  * @param {Number[]} numbers - An array of numbers.
  * @returns {Number} The difference between the largest and smallest number.
  */
-// ✕ Should return an empty array if the input is an empty string (1 ms)
 // ✕ Should return the original array if all the elements are not all numbers
 function betweenExtremes(numbers) {
+//The isArray() method returns true if an object is an array, otherwise false .
+// Checks the length in numbers
+//The some() method checks if any array elements pass a test (provided as a callback function).
+//
+if (!Array.isArray(numbers)||numbers.length === 0 || numbers.some(num => typeof num !== 'number')) {
+  return numbers
+}
 const minNum = Math.min(...numbers)
 const maxNum = Math.max(...numbers)
-console.log(numbers)
 return maxNum - minNum
 
 }
@@ -70,7 +75,11 @@ return maxNum - minNum
  * Example: "A new month"
  * .- / -. . .-- / -- --- -. - ....
  */
-function morseCodeTranslator() {}
+function morseCodeTranslator(numbers) {
+  const minNum = Math.min(...numbers);
+  const maxNum = Math.max(...numbers);
+  return maxNum - minNum
+}
 
 module.exports = {
   sortByStringLength,
