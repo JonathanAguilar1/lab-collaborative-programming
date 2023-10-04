@@ -75,10 +75,37 @@ return maxNum - minNum
  * Example: "A new month"
  * .- / -. . .-- / -- --- -. - ....
  */
-function morseCodeTranslator(numbers) {
-  const minNum = Math.min(...numbers);
-  const maxNum = Math.max(...numbers);
-  return maxNum - minNum
+function morseCodeTranslator(message, dictionary) {
+
+  // CHECK IF MESSAGE IS A STRING AND THE DICTIONARY IS A OBJECT
+  if (typeof message !== 'string' || typeof dictionary !== 'object' || dictionary === null) {
+    
+   return '';
+  }
+  // INITIALIZE A EMPTY ARRAY TO STORE TRANSLATED LETTERS
+  let resultLetters = [];
+
+  // CONVERT THE MESSAGE TO UPPERCASE
+  message = message.toUpperCase();
+
+  // SPLIT THE MESSAGE INTO AN ARRAY OF WORDS
+  let words = message.split(' ');
+
+  // ITERATE OVER EACH WORD IN THE ARRAY
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+
+    // ITERATE OVER EACH CHARACTER IN THE WORD
+    for (let j = 0; j < word.length; j++) {
+      let letter = word[j];
+      
+      // ADD THE TRANSLATED LETTER TO THE RESULTLETTERS ARRAY BY MATCHING THE LETTER WITH THE DICTIONARY
+      resultLetters.push(dictionary[letter] || letter);
+    }
+  }
+
+  // JOIN THE ARRAY OF TRANSLATED LETTERS INTO A STRING SEPARATED BY A SPACE
+  return resultLetters.join(' ');
 }
 
 module.exports = {
